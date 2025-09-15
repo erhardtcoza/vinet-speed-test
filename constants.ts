@@ -1,4 +1,5 @@
 
+
 // Test file sizes in bytes
 export const TEST_FILE_SIZES = [
     10 * 1024,      // 10KB
@@ -17,5 +18,5 @@ export const UPLOAD_URL = 'https://vinet-upload.free.beeceptor.com';
 // Number of latency samples to take for a more accurate reading.
 export const LATENCY_SAMPLE_COUNT = 5;
 
-// Small file for latency testing.
-export const LATENCY_TEST_URL = 'https://vinet-speed-test.vercel.app/favicon.ico';
+// Small file for latency testing. Using a relative path ensures we test against the hosting server.
+export const LATENCY_TEST_URL = '/favicon.ico';
