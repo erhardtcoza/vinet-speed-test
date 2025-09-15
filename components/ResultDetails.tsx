@@ -6,6 +6,7 @@ import BoxPlotChart from './BoxPlotChart';
 import { InfoIcon } from './icons/InfoIcon';
 import ServerInfoSection from './ServerInfoSection';
 import NetworkQualitySection from './NetworkQualitySection';
+import Tooltip from './Tooltip';
 
 interface ResultDetailsProps {
     results: TestResults | null;
@@ -64,7 +65,13 @@ const ResultDetails: React.FC<ResultDetailsProps> = ({ results, measurements, is
                                             <span className="font-bold text-vinet-gray-dark">{m.downloadSpeed.toFixed(2)} <span className="text-xs text-vinet-gray-light">Mbps</span></span>
                                         </div>
                                         <ProgressBar speed={m.downloadSpeed} />
-                                        <div className="text-xs text-vinet-gray-light text-right">in {(m.downloadDuration ?? 0).toFixed(2)}s</div>
+                                        <div className="text-xs text-vinet-gray-light text-right">
+                                            <Tooltip text="Time taken for this download test in seconds.">
+                                                <span className="cursor-help border-b border-dotted border-gray-400">
+                                                    in {(m.downloadDuration ?? 0).toFixed(2)}s
+                                                </span>
+                                            </Tooltip>
+                                        </div>
                                     </div>
                                     <div>
                                         <div className="flex justify-between items-baseline">
@@ -72,7 +79,13 @@ const ResultDetails: React.FC<ResultDetailsProps> = ({ results, measurements, is
                                             <span className="font-bold text-vinet-gray-dark">{m.uploadSpeed.toFixed(2)} <span className="text-xs text-vinet-gray-light">Mbps</span></span>
                                         </div>
                                          <ProgressBar speed={m.uploadSpeed} />
-                                         <div className="text-xs text-vinet-gray-light text-right">in {(m.uploadDuration ?? 0).toFixed(2)}s</div>
+                                         <div className="text-xs text-vinet-gray-light text-right">
+                                            <Tooltip text="Time taken for this upload test in seconds.">
+                                                <span className="cursor-help border-b border-dotted border-gray-400">
+                                                    in {(m.uploadDuration ?? 0).toFixed(2)}s
+                                                </span>
+                                            </Tooltip>
+                                         </div>
                                     </div>
                                     <div className="flex justify-between items-baseline pt-2">
                                         <span className="text-vinet-gray-light">Ping</span>

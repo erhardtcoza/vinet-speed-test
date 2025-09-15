@@ -41,6 +41,7 @@ const HistoryPanel: React.FC<HistoryPanelProps> = ({ history, onClearHistory }) 
                     className="w-full flex justify-between items-center p-4 text-left hover:bg-gray-50 focus:outline-none"
                     onClick={() => setIsOpen(!isOpen)}
                     aria-expanded={isOpen}
+                    aria-controls="history-content"
                 >
                     <h2 className="text-xl font-bold text-vinet-gray-dark">Test History</h2>
                     <svg
@@ -57,30 +58,30 @@ const HistoryPanel: React.FC<HistoryPanelProps> = ({ history, onClearHistory }) 
                     </svg>
                 </button>
                 {isOpen && (
-                    <div className="border-t border-gray-200 animate-fade-in">
+                    <div id="history-content" className="border-t border-gray-200 animate-fade-in">
                         <ul className="space-y-2 p-2">
                             {history.map(result => (
                                 <li key={result.id} className="bg-gray-50 rounded-md border border-gray-200">
                                     <button 
-                                        className="w-full p-3 flex flex-col sm:flex-row justify-between items-start sm:items-center text-left hover:bg-gray-100"
+                                        className="w-full p-3 flex flex-col sm:flex-row justify-between items-start sm:items-center text-left transition-colors duration-150 hover:bg-gray-100"
                                         onClick={() => handleToggleExpand(result.id)}
                                         aria-expanded={expandedId === result.id}
                                     >
-                                        <div className="text-sm text-vinet-gray-light mb-2 sm:mb-0 font-medium">
+                                        <div className="text-sm text-vinet-gray-dark mb-2 sm:mb-0 font-medium">
                                             {formatDate(result.timestamp)}
                                         </div>
                                         <div className="flex items-center space-x-4 text-sm">
-                                            <div className="flex items-center">
+                                            <div className="flex items-center" title={`Download: ${result.download.toFixed(2)} Mbps`}>
                                                 <ArrowDownIcon className="w-4 h-4 text-vinet-red" />
                                                 <span className="ml-1.5 font-bold text-vinet-gray-dark">{result.download.toFixed(2)}</span>
                                                 <span className="ml-1 text-vinet-gray-light">Mbps</span>
                                             </div>
-                                            <div className="flex items-center">
+                                            <div className="flex items-center" title={`Upload: ${result.upload.toFixed(2)} Mbps`}>
                                                 <ArrowUpIcon className="w-4 h-4 text-vinet-red" />
                                                 <span className="ml-1.5 font-bold text-vinet-gray-dark">{result.upload.toFixed(2)}</span>
                                                 <span className="ml-1 text-vinet-gray-light">Mbps</span>
                                             </div>
-                                            <div className="flex items-center">
+                                            <div className="flex items-center" title={`Ping: ${result.latency.toFixed(0)} ms`}>
                                                 <LatencyIcon className="w-4 h-4 text-vinet-red" />
                                                 <span className="ml-1.5 font-bold text-vinet-gray-dark">{result.latency.toFixed(0)}</span>
                                                 <span className="ml-1 text-vinet-gray-light">ms</span>

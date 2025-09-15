@@ -1,9 +1,0 @@
-# wrangler.toml
-name = "vinet-speed-test"
-compatibility_date = "2024-03-26"
-
-main = "index.tsx"
-
-[site]
-bucket = "./dist"
-
