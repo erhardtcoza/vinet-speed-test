@@ -1,0 +1,5 @@
+{
+  "name": "Vinet Speed Test",
+  "description": "A web application to measure internet connection speed, including download, upload, latency, and jitter, with a modern and intuitive user interface inspired by speed.cloudflare.com.",
+  "requestFramePermissions": []
+}
